@@ -28,8 +28,12 @@ ds_kopparapu_medini/
 └── outputs/
     ├── pnl_distribution_by_sentiment_full.png
     ├── pnl_distribution_by_sentiment_zoomed.png
-    ├── trade_percentage_by_sentiment.png
-    └── trade_outcome_buckets_by_sentiment.png
+    ├── total_volume_by_sentiment.png
+    ├── trade_outcome_buckets_by_sentiment.png
+    ├── trade_percentage_by_sentiment.png 
+    └── trade_size_by_sentiment.png
+
+
 ```
 
 ---
@@ -40,7 +44,7 @@ ds_kopparapu_medini/
    - Contains date and market sentiment (Fear / Greed)
 
 2. **Historical Trader Data (Hyperliquid)**
-   - Contains trades with fields like account, symbol, price, size, time, closed PnL, leverage, etc.
+   - Contains trades with fields like account, symbol, execution price, trade size (USD), timestamps, and closed PnL.
 
 ---
 
@@ -50,10 +54,12 @@ ds_kopparapu_medini/
 - Converted timestamps to dates  
 - Merged trading data with sentiment data using date  
 - Analyzed:
-  - PnL distribution in Fear vs Greed  
-  - Trade counts in each sentiment  
-  - Trade outcome buckets (loss, small win, big win, etc.)  
-  - Daily aggregated performance metrics  
+  - PnL distribution in Fear vs Greed
+  - Trade counts in each sentiment
+  - Trade volume by sentiment (total USD traded)
+  - Trade size as a proxy for risk / leverage
+  - Trade outcome buckets (loss, small win, big win, etc.)
+  - Daily aggregated performance metrics
 - Created plots for all important observations  
 - Saved:
   - Processed datasets in `csv_files/`  
@@ -92,12 +98,12 @@ All findings and explanations are summarized in:
 
 ## Main Observations
 
-- Trading behavior clearly changes between Fear and Greed periods  
-- Greed periods show higher risk and more extreme profits and losses  
-- Fear periods are more conservative and stable  
-- Trade outcome distributions are different in both regimes  
-
-Detailed explanation is in the PDF report.
+- Trading behavior clearly changes between Fear and Greed periods
+- Fear periods have the highest trading volume and largest position sizes
+- Greed periods show higher risk and more extreme profits and losses
+- Trade size increases significantly during Fear and Greed, indicating higher risk-taking
+- Trade outcome distributions are different in both regimes
+- Detailed explanation is in the PDF report.
 
 ---
 
