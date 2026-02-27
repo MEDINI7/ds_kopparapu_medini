@@ -1,118 +1,143 @@
-# Trader Behavior vs Market Sentiment
+# Trader Behavior vs Market Sentiment Analysis
 
-This project is analyzes how trader performance changes with market sentiment (Fear vs Greed) using real trading data.
-
-I used:
-- Bitcoin Fear & Greed Index data  
-- Historical trader data from Hyperliquid  
-
-The main goal was to see:
-- How profits and losses change in Fear vs Greed markets  
-- Whether traders take more risk in Greed  
-- How trade outcomes are distributed in different sentiment phases  
+This project analyzes how trader performance and behavior change across different market sentiment regimes (Fear, Greed, Extreme Fear, Extreme Greed, Neutral) using real-world trading data.
 
 ---
 
-## Folder Structure
+##  I used:
 
-```
+* Bitcoin Fear & Greed Index data
+* Historical trader data from Hyperliquid
+
+## The main goal was to see:
+
+* How profits and losses change across sentiment regimes
+* Whether trader behavior shifts during Fear and Greed
+* How trader performance differs by activity and consistency
+* How sentiment can inform smarter trading strategies
+
+---
+
+##  Folder Structure
+
+```text
 ds_kopparapu_medini/
-├── notebook_1.ipynb
-├── ds_report.pdf
-├── README.md
-├── csv_files/
+├── notebook_1.ipynb       # Baseline trade-level sentiment analysis
+├── notebook_2.ipynb       # Trader-level profiling and segmentation
+├── ds_report.pdf          # Summary of insights and findings
+├── README.md              # Project documentation
+├── csv_files/             # Raw and processed datasets
 │   ├── historical_data.csv
 │   ├── fear_greed_index.csv
 │   ├── merged_data.csv
 │   └── daily_metrics.csv
-└── outputs/
+└── outputs/               # Visualizations
     ├── pnl_distribution_by_sentiment_full.png
     ├── pnl_distribution_by_sentiment_zoomed.png
     ├── total_volume_by_sentiment.png
     ├── trade_outcome_buckets_by_sentiment.png
     ├── trade_percentage_by_sentiment.png 
     └── trade_size_by_sentiment.png
-
-
 ```
+---
+## Notebook Overview
+### notebook_1.ipynb
+
+### This notebook focuses on baseline trade-level sentiment analysis.
+It includes:
+
+* Data cleaning and preprocessing
+* Timestamp conversion and daily alignment
+* Merging trading and sentiment datasets
+* PnL distribution analysis across sentiment regimes
+* Trade counts and volume comparison
+* Trade size as a proxy for risk
+* Daily aggregated performance metrics
+
+This provides exploratory insight into how sentiment correlates with trade outcomes.
 
 ---
 
-## Data Used
+### notebook_2.ipynb
 
-1. **Fear & Greed Index**
-   - Contains date and market sentiment (Fear / Greed)
+### This notebook extends the analysis with trader-level behavioral profiling and segmentation.
 
-2. **Historical Trader Data (Hyperliquid)**
-   - Contains trades with fields like account, symbol, execution price, trade size (USD), timestamps, and closed PnL.
+It includes:
+
+* Trader-level aggregation (total PnL, win rate, trade count, position size, volatility)
+* Activity-based segmentation (Frequent vs Infrequent traders)
+* Consistency-based segmentation (Consistent Winners vs Inconsistent Traders)
+* Sentiment × Segment performance comparison
+* Volatility analysis as a drawdown proxy
+* Regime-based behavioral insights
+* Actionable trading strategy recommendations
+
+This notebook focuses on structured reasoning and translating analysis into practical strategy insights.
+
+---
+
+## Methodology
+### Part A — Data Preparation
+
+* Cleaned both datasets
+* Converted timestamps to daily format
+* Merged sentiment and trading data by date
+* Created key metrics:
+* Daily PnL per trader
+* Win rate
+* Trade count
+* Average position size
+* PnL volatility (risk proxy)
+
+### Part B — Regime-Based Analysis
+
+* Compared performance across Fear, Greed, Extreme, and Neutral regimes
+* Evaluated differences in average PnL and win rate
+* Measured volatility changes across regimes
+* Analyzed behavioral shifts in trade frequency and position size
+* Identified trader segments and compared regime-dependent performance
+
+### Part C — Actionable Output
+
+* Based on the findings, the following strategy rules were proposed:
+* Dynamic capital allocation toward high-activity traders during strong sentiment regimes
+* Stricter risk controls during fear periods due to elevated volatility
+* Reduced trade frequency during neutral regimes to avoid overtrading
+* Recognition that sentiment amplifies performance differences between consistent and inconsistent traders
 
 ---
 
-## What I Did
+## Key Observations
 
-- Cleaned both datasets  
-- Converted timestamps to dates  
-- Merged trading data with sentiment data using date  
-- Analyzed:
-  - PnL distribution in Fear vs Greed
-  - Trade counts in each sentiment
-  - Trade volume by sentiment (total USD traded)
-  - Trade size as a proxy for risk / leverage
-  - Trade outcome buckets (loss, small win, big win, etc.)
-  - Daily aggregated performance metrics
-- Created plots for all important observations  
-- Saved:
-  - Processed datasets in `csv_files/`  
-  - All plots in `outputs/`  
+* Trader performance is highly regime-dependent
+* Greed regimes generate higher average PnL
+* Fear regimes significantly increase volatility and trading activity
+* Neutral regimes reduce win rates and highlight skill differences
+* Sentiment amplifies dispersion between high-skill and low-skill traders
 
----
+ --- 
 
 ## How to Run
 
-Open `notebook_1.ipynb` in Google Colab or Jupyter and run all cells.
+* Open either: notebook_1.ipynb or notebook_2.ipynb in Google Colab or Jupyter and run all cells.
 
-The notebook:
-- Loads data from `csv_files/`  
-- Recreates the merged dataset  
-- Recomputes daily metrics  
-- Regenerates all plots in `outputs/`  
+### The notebooks:
 
----
-
-## Outputs
-
-All important plots are saved in the `outputs/` folder, including:
-- PnL distribution by sentiment (full and zoomed)  
-- Percentage of trades in Fear vs Greed  
-- Trade outcome bucket distribution by sentiment  
+* Load data from csv_files/
+* Recreate merged datasets
+* Recompute metrics
+* Regenerate all analysis tables and plots
 
 ---
-
-## Final Report
-
-All findings and explanations are summarized in:
-
-**`ds_report.pdf`**
-
----
-
-## Main Observations
-
-- Trading behavior clearly changes between Fear and Greed periods
-- Fear periods have the highest trading volume and largest position sizes
-- Greed periods show higher risk and more extreme profits and losses
-- Trade size increases significantly during Fear and Greed, indicating higher risk-taking
-- Trade outcome distributions are different in both regimes
-- Detailed explanation is in the PDF report.
-
----
-
-
 
 ## Final Note
 
-This project focuses more on:
-- Clear analysis  
-- Clean structure  
-- Reproducibility  
-- Practical insights  
+### This project emphasizes:
+* Clean data alignment
+* Structured analysis
+* Regime-aware trader segmentation
+* Actionable insights
+* Reproducibility and clarity
+
+ --- 
+
